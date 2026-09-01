@@ -89,30 +89,3 @@ setInterval(() => {
   tIndex = (tIndex + 1) % testimonials.length;
   renderTestimonial();
 }, 7000);
-
-/* ===== Contact form ===== */
-const quoteForm = document.getElementById('quoteForm');
-const formStatus = document.getElementById('formStatus');
-
-quoteForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const name = document.getElementById('name').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const message = document.getElementById('message').value.trim();
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  if (!name || !email || !message) {
-    formStatus.textContent = 'Please fill in your name, email, and vision.';
-    formStatus.classList.add('error');
-    return;
-  }
-  if (!emailPattern.test(email)) {
-    formStatus.textContent = 'Please enter a valid email address.';
-    formStatus.classList.add('error');
-    return;
-  }
-
-  formStatus.classList.remove('error');
-  formStatus.textContent = `Thanks, ${name}! We'll reply within 48 hours with ideas and pricing.`;
-  quoteForm.reset();
-});
