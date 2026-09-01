@@ -89,3 +89,64 @@ setInterval(() => {
   tIndex = (tIndex + 1) % testimonials.length;
   renderTestimonial();
 }, 7000);
+/* ===== Contact form ===== */
+
+const quoteForm = document.getElementById('quoteForm');
+const formStatus = document.getElementById('formStatus');
+
+quoteForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!name || !email || !message) {
+        formStatus.textContent =
+            'Please fill in your name, email, and vision.';
+        formStatus.classList.add('error');
+        return;
+    }
+
+    if (!emailPattern.test(email)) {
+        formStatus.textContent =
+            'Please enter a valid email address.';
+        formStatus.classList.add('error');
+        return;
+    }
+
+    formStatus.classList.remove('error');
+    formStatus.textContent = 'Sending...';
+
+    const formData = new FormData(quoteForm);
+
+    try {
+        const response = await fetch(
+            'https://api.web3forms.com/submit',
+            {
+                method: 'POST',
+                body: formData
+            }
+        );
+
+        const result = await response.json();
+
+        if (result.success) {
+            formStatus.textContent =
+                `Thanks, ${name}! Your enquiry has been sent successfully.`;
+
+            quoteForm.reset();
+        } else {
+            formStatus.textContent =
+                'Something went wrong. Please try again.';
+            formStatus.classList.add('error');
+        }
+
+    } catch (error) {
+        formStatus.textContent =
+            'Unable to send your enquiry. Please try again later.';
+        formStatus.classList.add('error');
+    }
+});
