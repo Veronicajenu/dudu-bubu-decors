@@ -90,7 +90,6 @@ setInterval(() => {
   renderTestimonial();
 }, 7000);
 /* ===== Contact form ===== */
-
 const quoteForm = document.getElementById('quoteForm');
 const formStatus = document.getElementById('formStatus');
 
@@ -132,21 +131,16 @@ quoteForm.addEventListener('submit', async (e) => {
         );
 
         const result = await response.json();
-
         if (result.success) {
-            formStatus.textContent =
-                `Thanks, ${name}! Your enquiry has been sent successfully.`;
-
+            formStatus.classList.remove('error');
+            formStatus.textContent = `Thanks, ${name}! We'll reply within 48 hours with ideas and pricing.`;
             quoteForm.reset();
         } else {
-            formStatus.textContent =
-                'Something went wrong. Please try again.';
+            formStatus.textContent = 'Something went wrong. Please try again.';
             formStatus.classList.add('error');
         }
-
     } catch (error) {
-        formStatus.textContent =
-            'Unable to send your enquiry. Please try again later.';
+        formStatus.textContent = 'Error sending message. Please try again.';
         formStatus.classList.add('error');
     }
 });
