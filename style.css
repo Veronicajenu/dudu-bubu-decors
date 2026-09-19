@@ -238,12 +238,11 @@ h4 {
 @media (max-width: 600px) {
 
   .loader-logo {
-    width: 180px;
-    font-size: 1.6rem;
+    width: 540px;
   }
 
   .loader-logo img {
-  width: 390px;
+  width: 490px;
   height: 90px;
   max-height: 90px;
 }
