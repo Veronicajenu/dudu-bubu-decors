@@ -89,51 +89,33 @@ setInterval(() => {
   tIndex = (tIndex + 1) % testimonials.length;
   renderTestimonial();
 }, 7000);
-/* ===== Contact form ===== */
-const quoteForm = document.getElementById('quoteForm');
-const formStatus = document.getElementById('formStatus');
 
-quoteForm.addEventListener('submit', async (e) => {
+/* ===== Contact form ===== */
+const form = document.getElementById('form');
+const submitBtn = form.querySelector('button[type="submit"]');
+
+form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const message = document.getElementById('message').value.trim();
+    const formData = new FormData(form);
+    formData.append("access_key", "37db34d6-7fa1-4fea-a083-24da9cca4870");
 
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const originalText = submitBtn.textContent;
 
-    if (!name || !email || !message) {
-        formStatus.textContent =
-            'Please fill in your name, email, and vision.';
-        formStatus.classList.add('error');
-        return;
-    }
-
-    if (!emailPattern.test(email)) {
-        formStatus.textContent =
-            'Please enter a valid email address.';
-        formStatus.classList.add('error');
-        return;
-    }
-
-    formStatus.classList.remove('error');
-    formStatus.textContent = 'Sending...';
-
-    const formData = new FormData(quoteForm);
+    submitBtn.textContent = "Sending...";
+    submitBtn.disabled = true;
 
     try {
-        const response = await fetch(
-            'https://api.web3forms.com/submit',
-            {
-                method: 'POST',
-                body: formData
-            }
-        );
+        const response = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            body: formData
+        });
 
+      
         const result = await response.json();
         if (result.success) {
             formStatus.classList.remove('error');
-            formStatus.textContent = `Thanks, ${name}! We'll reply within 48 hours with ideas and pricing.`;
+            formStatus.textContent = `Thanks, ${name}! We'll reply within 24 hours with ideas and pricing.`;
             quoteForm.reset();
         } else {
             formStatus.textContent = 'Something went wrong. Please try again.';
