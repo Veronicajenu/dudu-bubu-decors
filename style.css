@@ -147,8 +147,8 @@ h4 {
   justify-content: center;
 
   transition:
-    opacity .6s ease,
-    visibility .6s ease;
+    opacity .10s ease,
+    visibility .10s ease;
 }
 
 .preloader.hide {
@@ -195,7 +195,7 @@ h4 {
 /* ================= LOADING LINE ================= */
 
 .loader-line {
-  width: 80px;
+  width: 220px;
   height: 2px;
 
   background: var(--purple-200);
@@ -216,7 +216,7 @@ h4 {
 
   background: var(--purple-700);
 
-  animation: loading 1s ease infinite;
+  animation: loading 10s ease infinite;
 }
 
 
@@ -1446,6 +1446,24 @@ header.scrolled {
   color: white;
 }
 
+.other-occasions {
+  width: 100%;
+  text-align: center;
+  margin-top: 45px;
+
+  font-family: "Yeseva One", serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: #6f3a86;
+  letter-spacing: 0.03em;
+}
+
+.other-occasions b {
+  color: #D4AF37;
+  font-size: 0.85em;
+  margin: 0 8px;
+}
+
 
 /* ================= GALLERY ================= */
 
@@ -1991,6 +2009,25 @@ header.scrolled {
   background: var(--gold-soft);
 }
 
+.testimonial-image {
+  width: 100%;
+  max-width: 325px;
+  margin: 70px auto 0;
+  text-align: center;
+}
+
+.testimonial-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+
+  border-radius: 24px;
+
+  object-fit: cover;
+
+  box-shadow: 0 15px 40px rgba(55, 25, 70, 0.12);
+}
+
 
 /* ================= CONTACT ================= */
 
@@ -2089,42 +2126,29 @@ header.scrolled {
 }
 
 .social-row {
-
   display: flex;
-
-  gap: 8px;
-
-  margin-top: 30px;
+  align-items: center;
+  gap: 14px;
 }
 
 .social-row a {
-
-  width: 36px;
-  height: 36px;
-
+  width: 42px;
+  height: 42px;
   display: flex;
-
   align-items: center;
   justify-content: center;
-
-  border: 1px solid var(--purple-200);
-
+  text-decoration: none;
+  color: var(--purple-900);
+  font-size: 20px;
+  border: 1px solid rgba(111, 58, 134, 0.25);
   border-radius: 50%;
-
-  font-size: .6rem;
-
-  color: var(--purple-700);
-
-  transition:
-    background .25s ease,
-    color .25s ease;
+  transition: all 0.3s ease;
 }
 
 .social-row a:hover {
-
-  background: var(--purple-700);
-
+  background: var(--purple-900);
   color: white;
+  transform: translateY(-3px);
 }
 
 
